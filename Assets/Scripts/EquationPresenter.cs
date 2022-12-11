@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 //presenter
@@ -14,16 +15,17 @@ public class EquationPresenter : MonoBehaviour
     {
         model.OnErrorOccured += ShowErrorScreen; 
         model.OnUpdateEquation += UpdateEquationField;
-        
-        model.Equation = PlayerPrefs.GetString("equationInput");
     }
     private void OnDisable()
     {
-        PlayerPrefs.SetString("equationInput", model.Equation);
-        PlayerPrefs.Save();
-        
         model.OnErrorOccured -= ShowErrorScreen;
         model.OnUpdateEquation -= UpdateEquationField;
+    }
+
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        if (!hasFocus) SaveEquationInput(); 
+        model.Equation = PlayerPrefs.GetString("equationInput", "");
     }
     public void UpdateEquationModel()
     {
@@ -34,6 +36,11 @@ public class EquationPresenter : MonoBehaviour
         inputField.text = model.Equation;
     }
 
+    private void SaveEquationInput()
+    {
+        PlayerPrefs.SetString("equationInput", inputField.text);
+        PlayerPrefs.Save();
+    }
     public void OnResultClicked()
     {
         OnSolveEquation?.Invoke();
@@ -41,13 +48,15 @@ public class EquationPresenter : MonoBehaviour
 
     void ShowErrorScreen()
     {
+        inputField.text = "";
+        SaveEquationInput();
         equationScreen.SetActive(false);
         errorScreen.SetActive(true);
     }
     public void ShowEquationScreen()
     {
         errorScreen.SetActive(false);
-        inputField.text = "";
+        //inputField.text = "";
         equationScreen.SetActive(true);
     }
 }
