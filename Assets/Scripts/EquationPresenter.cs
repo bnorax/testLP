@@ -12,7 +12,7 @@ public class EquationPresenter : MonoBehaviour
     public Action OnSolveEquation;
     private void OnEnable()
     {
-        model.OnErrorOccured += ShowErrorScreen;
+        model.OnErrorOccured += ShowErrorScreen; 
         model.OnUpdateEquation += UpdateEquationField;
         
         model.Equation = PlayerPrefs.GetString("equationInput");
@@ -20,6 +20,7 @@ public class EquationPresenter : MonoBehaviour
     private void OnDisable()
     {
         PlayerPrefs.SetString("equationInput", model.Equation);
+        PlayerPrefs.Save();
         
         model.OnErrorOccured -= ShowErrorScreen;
         model.OnUpdateEquation -= UpdateEquationField;
@@ -35,7 +36,7 @@ public class EquationPresenter : MonoBehaviour
 
     public void OnResultClicked()
     {
-        OnSolveEquation.Invoke();
+        OnSolveEquation?.Invoke();
     }
 
     void ShowErrorScreen()
