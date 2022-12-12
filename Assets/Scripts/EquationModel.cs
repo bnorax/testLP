@@ -1,12 +1,11 @@
 using System;
 using UnityEngine;
-//model
 public class EquationModel : MonoBehaviour
 {
     [SerializeField] private EquationPresenter presenter;
+    private string _equation;
     public Action OnErrorOccured;
     public Action OnUpdateEquation;
-    private string _equation;
     public string Equation { 
         get => _equation;
         set
@@ -25,7 +24,7 @@ public class EquationModel : MonoBehaviour
         presenter.OnSolveEquation -= SolveEquation;
     }
 
-    int FindFirstDivisor(String str) //finding first divisor 
+    private int FindFirstDivisor(String str) //finding first divisor 
     {
         for (int i = 0; i < str.Length; i++)
             if (str[i] == '/')
@@ -33,7 +32,7 @@ public class EquationModel : MonoBehaviour
         return 0;
     }
 
-    void SolveEquation()
+    private void SolveEquation()
     {
         if(_equation.Length == 0) return;
         int divPos = FindFirstDivisor(_equation);
@@ -42,15 +41,15 @@ public class EquationModel : MonoBehaviour
 
         foreach (var ch in opFirstStr) //checking operand for symbols other than 0-9
             if (ch > '9' || ch < '0') { OnErrorOccured?.Invoke(); return; } //if that is the case, telling presenter about error
-        if (!decimal.TryParse(opFirstStr, out var opFirst)) { OnErrorOccured?.Invoke(); return; } //getting number from string
+        if (!double.TryParse(opFirstStr, out var opFirst)) { OnErrorOccured?.Invoke(); return; } //getting number from string
         
         foreach (var ch in opSecondStr) 
             if (ch > '9' || ch < '0') { OnErrorOccured?.Invoke(); return; }
-        if (!decimal.TryParse(opSecondStr, out var opSecond)) { OnErrorOccured?.Invoke(); return; }
+        if (!double.TryParse(opSecondStr, out var opSecond)) { OnErrorOccured?.Invoke(); return; }
         
         try
         {
-            Equation = decimal.Divide(opFirst, opSecond).ToString("0.##########");
+            Equation = (opFirst/opSecond).ToString("0.##########");
         }
         catch(DivideByZeroException e)
         {

@@ -1,9 +1,6 @@
 using System;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
-
-//presenter
 public class EquationPresenter : MonoBehaviour
 {
     [SerializeField] private TMP_InputField inputField;
@@ -21,42 +18,38 @@ public class EquationPresenter : MonoBehaviour
         model.OnErrorOccured -= ShowErrorScreen;
         model.OnUpdateEquation -= UpdateEquationField;
     }
-
     private void OnApplicationFocus(bool hasFocus)
     {
         if (!hasFocus) SaveEquationInput(); 
         model.Equation = PlayerPrefs.GetString("equationInput", "");
     }
-    public void UpdateEquationModel()
-    {
-        model.Equation = inputField.text;
-    }
-    void UpdateEquationField()
-    {
-        inputField.text = model.Equation;
-    }
-
-    private void SaveEquationInput()
-    {
-        PlayerPrefs.SetString("equationInput", inputField.text);
-        PlayerPrefs.Save();
-    }
-    public void OnResultClicked()
-    {
-        OnSolveEquation?.Invoke();
-    }
-
-    void ShowErrorScreen()
+    private void ShowErrorScreen()
     {
         inputField.text = "";
         SaveEquationInput();
         equationScreen.SetActive(false);
         errorScreen.SetActive(true);
     }
+    private void SaveEquationInput()
+    {
+        PlayerPrefs.SetString("equationInput", inputField.text);
+        PlayerPrefs.Save();
+    }
+    private void UpdateEquationField()
+    {
+        inputField.text = model.Equation;
+    }
+    public void UpdateEquationModel()
+    {
+        model.Equation = inputField.text;
+    }
+    public void OnResultClicked()
+    {
+        OnSolveEquation?.Invoke();
+    }
     public void ShowEquationScreen()
     {
         errorScreen.SetActive(false);
-        //inputField.text = "";
         equationScreen.SetActive(true);
     }
 }
