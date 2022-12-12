@@ -41,15 +41,15 @@ public class EquationModel : MonoBehaviour
 
         foreach (var ch in opFirstStr) //checking operand for symbols other than 0-9
             if (ch > '9' || ch < '0') { OnErrorOccured?.Invoke(); return; } //if that is the case, telling presenter about error
-        if (!double.TryParse(opFirstStr, out var opFirst)) { OnErrorOccured?.Invoke(); return; } //getting number from string
+        if (!decimal.TryParse(opFirstStr, out var opFirst)) { OnErrorOccured?.Invoke(); return; } //getting number from string
         
         foreach (var ch in opSecondStr) 
             if (ch > '9' || ch < '0') { OnErrorOccured?.Invoke(); return; }
-        if (!double.TryParse(opSecondStr, out var opSecond)) { OnErrorOccured?.Invoke(); return; }
+        if (!decimal.TryParse(opSecondStr, out var opSecond)) { OnErrorOccured?.Invoke(); return; }
         
         try
         {
-            Equation = (opFirst/opSecond).ToString("0.##########");
+            Equation = decimal.Divide(opFirst, opSecond).ToString("0.##########");
         }
         catch(DivideByZeroException e)
         {
