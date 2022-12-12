@@ -450,7 +450,7 @@ MonoBehaviour:
   m_HideSoftKeyboard: 0
   m_CharacterValidation: 0
   m_RegexValue: 
-  m_GlobalPointSize: 14
+  m_GlobalPointSize: 16
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -794,8 +794,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -925,8 +925,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Enter equation...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d1119d2844af0754db0ffabc20fe03f0, type: 2}
-  m_sharedMaterial: {fileID: 198711801633111920, guid: d1119d2844af0754db0ffabc20fe03f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b820650dacd33d845bcdf9d187b25dc5, type: 2}
+  m_sharedMaterial: {fileID: -6003699670447534499, guid: b820650dacd33d845bcdf9d187b25dc5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -950,8 +950,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 14
-  m_fontSizeBase: 14
+  m_fontSize: 16
+  m_fontSizeBase: 16
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1250,8 +1250,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 100, y: -90}
-  m_SizeDelta: {x: 190, y: 70}
+  m_AnchoredPosition: {x: 100, y: -100}
+  m_SizeDelta: {x: 190, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1497583839
 MonoBehaviour:
@@ -1278,8 +1278,8 @@ MonoBehaviour:
     manager
     at this time beats them with a whip, while the director is tearing his hair out'
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: d1119d2844af0754db0ffabc20fe03f0, type: 2}
-  m_sharedMaterial: {fileID: 198711801633111920, guid: d1119d2844af0754db0ffabc20fe03f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
